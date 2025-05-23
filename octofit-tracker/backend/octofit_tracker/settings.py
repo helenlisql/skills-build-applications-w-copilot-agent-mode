@@ -133,3 +133,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ["*"]
 CORS_ALLOW_METHODS = ["*"]
+
+# Codespace Django REST API endpoint suffix
+CODESPACE_API_URL_SUFFIX = "-8000.app.github.dev"
