@@ -6,7 +6,9 @@ const Leaderboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiUrl = `https://${window.location.hostname.replace(/^([^.]+)-.*/, '$1')}${process.env.REACT_APP_CODESPACE_API_URL_SUFFIX || '-8000.app.github.dev'}/api/leaderboard/`;
+    const codespaceSuffix = process.env.REACT_APP_CODESPACE_API_URL_SUFFIX || '-8000.app.github.dev';
+    const codespacePrefix = window.location.hostname.replace(/-8000\.app\.github\.dev.*/, '');
+    const apiUrl = `https://${codespacePrefix}${codespaceSuffix}/api/leaderboard/`;
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok');
