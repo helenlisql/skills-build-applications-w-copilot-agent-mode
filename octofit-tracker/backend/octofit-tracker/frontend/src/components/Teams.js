@@ -6,8 +6,7 @@ const Teams = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Replace YOUR-CODESPACE-NAME with your actual Codespace name
-    const apiUrl = 'https://[REPLACE-THIS-WITH-YOUR-CODESPACE-NAME]-8000.app.github.dev/api/teams/';
+    const apiUrl = `https://${window.location.hostname.replace(/^([^.]+)-.*/, '$1')}${process.env.REACT_APP_CODESPACE_API_URL_SUFFIX || '-8000.app.github.dev'}/api/teams/`;
     fetch(apiUrl)
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok');
