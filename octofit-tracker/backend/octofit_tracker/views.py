@@ -1,36 +1,21 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.reverse import reverse
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 from .models import User, Team, Activity, Leaderboard, Workout
 import os
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def api_root(request, format=None):
-    # Replace with your actual Codespace name or use an environment variable if set
-    codespace_url = os.environ.get('CODESPACE_URL', 'https://[REPLACE-THIS-WITH-YOUR-CODESPACE-NAME]-8000.app.github.dev')
-    localhost_url = 'http://localhost:8000'
+    # Use the Codespace URL for API root endpoints
+    codespace_url = 'https://ubiquitous-pancake-77qqrw5j5v7c7xp-8000.app.github.dev/api/'
     return Response({
-        'users': {
-            'codespace': f'{codespace_url}/api/users/?format=api',
-            'localhost': f'{localhost_url}/api/users/?format=api',
-        },
-        'teams': {
-            'codespace': f'{codespace_url}/api/teams/?format=api',
-            'localhost': f'{localhost_url}/api/teams/?format=api',
-        },
-        'activities': {
-            'codespace': f'{codespace_url}/api/activities/?format=api',
-            'localhost': f'{localhost_url}/api/activities/?format=api',
-        },
-        'leaderboard': {
-            'codespace': f'{codespace_url}/api/leaderboard/?format=api',
-            'localhost': f'{localhost_url}/api/leaderboard/?format=api',
-        },
-        'workouts': {
-            'codespace': f'{codespace_url}/api/workouts/?format=api',
-            'localhost': f'{localhost_url}/api/workouts/?format=api',
-        },
+        'users': codespace_url + 'users/',
+        'teams': codespace_url + 'teams/',
+        'activity': codespace_url + 'activity/',
+        'leaderboard': codespace_url + 'leaderboard/',
+        'workouts': codespace_url + 'workouts/',
     })
 
 class UserViewSet(viewsets.ModelViewSet):

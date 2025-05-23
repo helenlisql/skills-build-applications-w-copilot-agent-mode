@@ -6,7 +6,6 @@ const Activities = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Replace YOUR-CODESPACE-NAME with your actual Codespace name
     const codespaceSuffix = process.env.REACT_APP_CODESPACE_API_URL_SUFFIX || '-8000.app.github.dev';
     const codespacePrefix = window.location.hostname.replace(/-8000\.app\.github\.dev.*/, '');
     const apiUrl = `https://${codespacePrefix}${codespaceSuffix}/api/activity/`;
